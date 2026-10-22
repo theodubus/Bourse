@@ -38,11 +38,14 @@ Chaque fichier commence par un en-tête :
 ---
 titre: Assurance vie
 description: Phrase affichée par les moteurs de recherche.
-ordre: 8
+ordre: 11
+partie: Les enveloppes
 ---
 ```
 
-`ordre` fixe la position de la page dans le sommaire et dans les liens « Précédent / Suivant ».
+`ordre` fixe la position de la page dans le sommaire et dans les liens « Précédent / Suivant ». `partie` (facultatif) regroupe les pages sous un intitulé dans le sommaire : les pages qui se suivent avec la même partie sont affichées ensemble.
+
+Chaque page commence par un encadré `> [!abstract] L'essentiel` qui résume en 3 ou 4 points ce qu'il faut retenir.
 
 Dans le corps de la page :
 
@@ -53,5 +56,10 @@ Dans le corps de la page :
 - Encadrés (comme dans Obsidian) : `> [!info] Titre`, `> [!question]`, `> [!warning]`, `> [!fail]`, `> [!success]`, `> [!tip]`, `> [!example]`, `> [!quote]`… Ajouter `-` après le crochet (`> [!info]- Titre`) pour un encadré replié par défaut.
 - Image avec légende, seule sur sa ligne : `![texte alternatif](orange.png "Légende")`.
 - Graphique en courbe à partir d'un fichier CSV (colonnes année, valeur) : `![Description](donnees/inflation-france.csv "Légende")`.
+- Sources : un appel `[^cle]` dans le texte, et la référence correspondante sur une ligne à part, en bas du fichier : `[^cle]: Organisme, [titre](https://…), date.` Les appels sont numérotés automatiquement dans l'ordre d'apparition, et la liste des sources s'affiche en bas de page. Une même source peut être appelée plusieurs fois. Le script signale une note appelée mais non définie, ou définie mais jamais appelée.
+
+## Renommer ou fusionner une page
+
+Pour qu'une ancienne adresse continue de fonctionner, ajouter une ligne dans `REDIRECTIONS`, en haut de la section correspondante de `build.py` (par exemple `"inflation.html": "pourquoi-investir"`). Le script génère alors une page qui redirige vers la nouvelle.
 
 La date de dernière mise à jour et l'avertissement affichés en bas de chaque page se règlent en haut de `build.py` (`MISE_A_JOUR`, `AVERTISSEMENT`).

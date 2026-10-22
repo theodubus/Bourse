@@ -1,9 +1,15 @@
 ---
-titre: Dans quels ETF investir ?
-description: MSCI World, S&P 500, CAC 40, Nasdaq-100, ETF obligataires : les principaux indices, des ETF éligibles au PEA et les critères pour choisir.
-ordre: 11
+titre: Choisir ses ETF
+description: MSCI World, S&P 500, CAC 40, Nasdaq-100, ETF obligataires : les principaux indices, des ETF éligibles au PEA, les critères de choix et des exemples de portefeuilles simples.
+ordre: 7
+partie: Investir en bourse
 ---
-Pour comparer des ETF, on utilise un comparateur (*screener*), comme [justETF](https://www.justetf.com/fr/find-etf.html) ou [Moning](https://moning.co/etf), ou directement l'outil de recherche de son [[choisir-son-courtier|courtier]].
+> [!abstract] L'essentiel
+> - Un ETF MSCI World suffit pour investir dans environ 1 250 grandes entreprises de 23 pays développés.
+> - Les ETF plus concentrés (un pays, un secteur) peuvent compléter, mais sont plus risqués.
+> - Critères de choix : diversification, frais, encours, capitalisant ou distribuant, éligibilité au PEA.
+
+Pour comparer des ETF, on utilise un comparateur (*screener*), comme [justETF](https://www.justetf.com/fr/find-etf.html) ou [Moning](https://moning.co/etf), ou directement l'outil de recherche de son [[choisir-son-courtier|courtier]]. Chaque ETF est identifié par un code [[glossaire#ISIN|ISIN]], plus fiable que son nom pour le retrouver.
 
 Ne pas oublier de vérifier que l'ETF est éligible au PEA (si l'on investit via un PEA) et que son courtier permet de l'acheter.
 
@@ -17,20 +23,20 @@ Voici quelques indices populaires, souvent répliqués par des ETF :
 
 ## MSCI World
 
-Les ETF sur cet indice sont considérés comme le placement de base de l'investisseur passif. Le MSCI World regroupe les grandes et moyennes entreprises de 23 pays développés (dont environ 70 % d'entreprises américaines). Ses points forts :
-- beaucoup d'entreprises (environ 1 300) ;
+Les ETF sur cet indice sont considérés comme le placement de base de l'investisseur passif. Le MSCI World regroupe les grandes et moyennes entreprises de 23 pays développés, dont une large majorité d'entreprises américaines. Ses points forts[^msci] :
+- beaucoup d'entreprises (environ 1 250) ;
 - beaucoup de pays (23) ;
 - tous les secteurs de l'économie ;
-- une bonne performance de long terme : environ 6,6 % par an en euros, dividendes réinvestis, entre fin 2000 et mi-2026, une période qui inclut pourtant deux krachs.
+- une bonne performance de long terme : près de 7 % par an en euros, dividendes réinvestis, depuis fin 2000, une période qui inclut pourtant deux krachs.
 
-Ce n'est pas un placement sans risque pour autant : il a perdu près de 40 % en 2008. Mais pour profiter de la hausse des marchés sans concentrer ses risques, c'est l'investissement de référence. Plusieurs ETF MSCI World sont éligibles au PEA, par exemple :
+Ce n'est pas un placement sans risque pour autant : il a perdu près de 40 % en 2008. Mais pour profiter de la hausse des marchés sans concentrer ses risques, c'est l'investissement de référence. Plusieurs ETF MSCI World sont éligibles au PEA, par exemple[^etf-msci] :
 
 | ETF | ISIN | Frais courants | Particularités |
 | --- | --- | --- | --- |
 | Amundi PEA Monde (DCAM) | FR001400U5Q4 | 0,20 % | Capitalisant, part à quelques euros |
 | iShares MSCI World Swap PEA (WPEA) | IE0002XZSHO1 | 0,20 % | Capitalisant |
 | Amundi MSCI World (CW8) | LU1681043599 | 0,38 % | Capitalisant, le plus ancien, part à plusieurs centaines d'euros |
-| Amundi MSCI World Swap (EWLD) | FR0011869353 | 0,38 % | Ex-Lyxor PEA Monde, distribuant depuis 2024 |
+| Amundi MSCI World Swap (EWLD) | FR0011869353 | 0,38 % | Ex-Lyxor PEA Monde, distribuant depuis 2024[^ewld] |
 
 Les frais courants sont prélevés automatiquement chaque année sur la valeur de l'ETF. Les écarts entre ces ETF sont faibles ; on peut aussi regarder lesquels son courtier propose sans frais de courtage.
 
@@ -43,13 +49,13 @@ Cet indice existe aussi en version pays émergents (MSCI Emerging Markets) et en
 Le CAC 40 regroupe 40 des plus grandes entreprises cotées à la Bourse de Paris. Un ETF CAC 40 est déconseillé comme placement principal :
 - peu d'entreprises (40) ;
 - un seul pays, et quelques secteurs très représentés (luxe, énergie, banque…) ;
-- une performance de long terme plus faible que celle des indices mondiaux : hors dividendes, le CAC 40 a mis plus de 21 ans à retrouver son record de septembre 2000, battu seulement en novembre 2021.
+- une évolution très dépendante de quelques grands groupes : hors dividendes, le CAC 40 a mis plus de 21 ans à retrouver son record de clôture de septembre 2000, battu seulement le 2 novembre 2021[^cac-record]. Dividendes réinvestis, il l'avait retrouvé dès 2007[^cac-gr], ce qui montre au passage l'importance des dividendes.
 
-Il existe des ETF plus diversifiés et plus performants ; investir principalement dans le CAC 40 est donc un risque inutile.
+Il existe des ETF bien plus diversifiés ; investir principalement dans le CAC 40 est donc un risque inutile.
 
 ## S&P 500
 
-Le S&P 500 regroupe environ 500 des plus grandes entreprises américaines. Sur longue période, il a rapporté environ 10 % par an en dollars, dividendes réinvestis, mais cette performance est limitée aux États-Unis. Miser sur cet indice revient à parier que l'économie américaine continuera à bien se porter ces prochaines décennies : c'est avantageux si c'est le cas, désavantageux sinon. Plusieurs ETF S&P 500 sont éligibles au PEA, par exemple :
+Le S&P 500 regroupe environ 500 des plus grandes entreprises américaines. Depuis 1928, il a rapporté environ 10 % par an en dollars, dividendes réinvestis[^damodaran], mais cette performance est limitée aux États-Unis. Miser sur cet indice revient à parier que l'économie américaine continuera à bien se porter ces prochaines décennies : c'est avantageux si c'est le cas, désavantageux sinon. Plusieurs ETF S&P 500 sont éligibles au PEA, par exemple[^etf-sp500] :
 
 | ETF | ISIN | Frais courants |
 | --- | --- | --- |
@@ -62,19 +68,19 @@ Le Dow Jones Industrial Average, créé en 1896, est l'un des plus anciens indic
 
 ## Nasdaq-100
 
-Le Nasdaq-100 regroupe les 100 plus grandes entreprises non financières cotées sur le Nasdaq, en majorité des entreprises technologiques (Apple, Microsoft, Nvidia, Amazon, Alphabet…). Il a offert des performances remarquables : environ 16 % par an, dividendes réinvestis, sur les 20 dernières années. Mais il ne compte que 100 entreprises, très concentrées dans un même secteur : il se portera bien si la technologie se porte bien. C'est un indice volatil, dans lequel il peut être intéressant d'investir une petite part de son argent.
+Le Nasdaq-100 regroupe les 100 plus grandes entreprises non financières cotées sur le Nasdaq, en majorité des entreprises technologiques (Apple, Microsoft, Nvidia, Amazon, Alphabet…). Il a offert des performances remarquables : environ 16 % par an, dividendes réinvestis, de fin 2007 à fin 2025[^nasdaq]. Mais il ne compte que 100 entreprises, très concentrées dans un même secteur : il se portera bien si la technologie se porte bien. C'est un indice volatil, dans lequel il peut être intéressant d'investir une petite part de son argent.
 
-La technologie n'est pas un pari sûr : lors de l'éclatement de la bulle internet, au début des années 2000, le Nasdaq a perdu près de 80 % de sa valeur, et il a fallu environ 15 ans (jusqu'en 2015) pour que l'indice Nasdaq Composite retrouve son record de mars 2000. Bien sûr, on ne perd ni ne gagne d'argent tant qu'on ne vend pas, mais il faut être capable d'attendre aussi longtemps.
+La technologie n'est pas un pari sûr : lors de l'éclatement de la bulle internet, au début des années 2000, le Nasdaq a perdu près de 80 % de sa valeur, et il a fallu 15 ans (jusqu'en avril 2015) pour que l'indice Nasdaq Composite retrouve son record de mars 2000[^nasdaq-2015]. Bien sûr, on ne perd ni ne gagne d'argent tant qu'on ne vend pas, mais il faut être capable d'attendre aussi longtemps.
 
-Exemple d'ETF Nasdaq-100 éligible au PEA : Amundi PEA Nasdaq-100 (PUST), ISIN FR0011871110, frais courants de 0,30 %.
+Exemple d'ETF Nasdaq-100 éligible au PEA : Amundi PEA Nasdaq-100 (PUST), ISIN FR0011871110, frais courants de 0,30 %[^pust].
 
 ## Les ETF obligataires
 
-Les ETF obligataires investissent dans des obligations. Ils rapportent généralement moins que les actions sur le long terme, mais fluctuent beaucoup moins. Les obligations d'État de qualité amortissent souvent les crises boursières, car les taux baissent alors et leur prix monte. Ce n'est pas une garantie : en 2022, la hausse brutale des taux les a fait chuter d'environ 18 %.
+Les ETF obligataires investissent dans des obligations. Ils rapportent généralement moins que les actions sur le long terme, mais fluctuent beaucoup moins. Les obligations d'État de qualité amortissent souvent les crises boursières, car les taux baissent alors et leur prix monte. Ce n'est pas une garantie : en 2022, la hausse brutale des taux les a fait chuter d'environ 18 %[^obligations-2022].
 
-Les ETF obligataires ne sont pratiquement pas accessibles en PEA, qui est réservé aux actions. Le seul ETF « obligataire » qui y était éligible, OBLI (Amundi, ex-Lyxor PEA Obligations d'État Euro, ISIN FR0013346681), suit depuis octobre 2024 un taux monétaire (l'€STR) : c'est désormais un placement de trésorerie, et non plus un ETF obligataire.
+Les ETF obligataires ne sont pratiquement pas accessibles en PEA, qui est réservé aux actions. Le seul ETF « obligataire » qui y était éligible, OBLI (Amundi, ex-Lyxor PEA Obligations d'État Euro, ISIN FR0013346681), suit depuis octobre 2024 un taux monétaire (l'€STR) : c'est désormais un placement de trésorerie, et non plus un ETF obligataire[^obli].
 
-Pour investir dans des obligations, on passe donc plutôt par le fonds en euros d'une [[assurance-vie|assurance vie]], ou par des ETF obligataires sur un [[choisir-son-enveloppe-fiscale#1. Le compte-titres ordinaire (CTO)|compte-titres]] ou en unités de compte d'une assurance vie. Par exemple, l'iShares Core € Govt Bond (ISIN IE00B4WXJJ64) investit dans les obligations des États de la zone euro, pour 0,07 % de frais courants par an (distribuant).
+Pour investir dans des obligations, on passe donc plutôt par le fonds en euros d'une [[assurance-vie|assurance vie]], ou par des ETF obligataires sur un [[compte-titres|compte-titres]] ou en [[glossaire#Unité de compte|unités de compte]] d'une assurance vie. Par exemple, l'iShares Core € Govt Bond (ISIN IE00B4WXJJ64) investit dans les obligations des États de la zone euro, pour 0,07 % de frais courants par an (distribuant)[^ishares-govt].
 
 Pour une diversification maximale, on peut ainsi combiner des ETF actions, qui prennent de la valeur quand l'économie se porte bien, et des ETF obligataires, qui résistent généralement mieux quand le marché va mal.
 
@@ -87,3 +93,24 @@ La mention « ESG » signifie Environnement, Social et Gouvernance : ces ETF exc
 On rencontre aussi les mentions « value » et « growth ». Les entreprises *value* sont celles dont l'action est jugée bon marché par rapport à leurs bénéfices ou à leurs actifs (souvent des entreprises matures : banques, énergie, industrie). Les entreprises *growth* sont celles dont on attend une forte croissance des bénéfices (souvent dans la technologie), et dont l'action est donc chère. Historiquement, le style value a plutôt mieux résisté en période d'inflation et de hausse des taux (comme en 2022), tandis que le style growth a profité des périodes de taux bas.
 
 Enfin, bien vérifier si un ETF est capitalisant (dividendes réinvestis, à privilégier) ou distribuant.
+
+## Exemples de portefeuilles simples
+
+Voici trois exemples types, à titre d'illustration : ce ne sont pas des recommandations personnalisées.
+- **Le plus simple** : 100 % dans un seul ETF MSCI World éligible au PEA. Un achat par mois, rien d'autre à gérer.
+- **Le monde entier** : environ 90 % d'ETF MSCI World et 10 % d'ETF pays émergents (il existe des ETF émergents éligibles au PEA), pour couvrir aussi la Chine, l'Inde, Taïwan…
+- **Avec une part sécurisée** : en assurance vie, par exemple 70 % d'ETF actions monde et 30 % de fonds en euros, la répartition étant ajustée selon son horizon (voir [[gestion-passive#Répartir entre actions et obligations|Répartir entre actions et obligations]]).
+
+[^msci]: MSCI, [fiche de l'indice MSCI World (EUR)](https://www.msci.com/documents/10199/255599/msci-world-index-eur-gross.pdf), septembre 2026.
+[^etf-msci]: Fiches justETF, consultées en octobre 2026 : [DCAM](https://www.justetf.com/fr/etf-profile.html?isin=FR001400U5Q4), [WPEA](https://www.justetf.com/fr/etf-profile.html?isin=IE0002XZSHO1), [CW8](https://www.justetf.com/fr/etf-profile.html?isin=LU1681043599), [EWLD](https://www.justetf.com/fr/etf-profile.html?isin=FR0011869353).
+[^ewld]: S'investir, [« Fin du Lyxor PEA Monde : faut-il encore investir dans l'EWLD ? »](https://sinvestir.fr/fin-du-lyxor-pea-monde/).
+[^cac-record]: Europe 1, [« Le CAC 40 bat son record historique de 2000 »](https://www.europe1.fr/node/763262), novembre 2021.
+[^cac-gr]: Café du Trading, [« CAC 40 au plus haut, et après ? »](https://www.cafedutrading.com/actualites/cac-40-au-plus-haut-et-apres) (CAC 40 dividendes réinvestis).
+[^damodaran]: Aswath Damodaran (NYU Stern), [« Historical Returns on Stocks, Bonds and Bills »](https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/histretSP.html), 1928-2024.
+[^etf-sp500]: Fiches justETF, consultées en octobre 2026 : [ESE](https://www.justetf.com/fr/etf-profile.html?isin=FR0011550185), [PSP5](https://www.justetf.com/fr/etf-profile.html?isin=FR0011871128).
+[^nasdaq]: Nasdaq, [« When Performance Matters: Nasdaq-100 vs. S&P 500 », 4e trimestre 2025](https://www.nasdaq.com/docs/ndx-when-performance-matters-q4-2025).
+[^nasdaq-2015]: Fortune, [« Nasdaq surpasses internet bubble peak to set new record »](https://fortune.com/2015/04/23/nasdaq-supasses-internet-bubble-peak-to-set-new-record), 23 avril 2015.
+[^pust]: Fiche justETF de l'[Amundi PEA Nasdaq-100](https://www.justetf.com/fr/etf-profile.html?isin=FR0011871110), consultée en octobre 2026.
+[^obligations-2022]: Covéa Finance, [« Suivi hebdomadaire des marchés », 10 juillet 2023](https://www.covea-finance.fr/sites/default/files/2023-07/Suivi%20Hebdo_100723.pdf).
+[^obli]: Amundi, [reporting mensuel de l'Amundi PEA Euro Court Terme (OBLI)](https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013346681/FRA/FRA/INSTITUTIONNEL/ETF/20260831), août 2026.
+[^ishares-govt]: Fiche justETF de l'[iShares Core € Govt Bond](https://www.justetf.com/fr/etf-profile.html?isin=IE00B4WXJJ64), consultée en octobre 2026.

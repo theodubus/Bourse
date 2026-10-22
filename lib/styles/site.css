@@ -37,6 +37,41 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2'/%3E%3Cpath d='M12 20v2'/%3E%3Cpath d='m4.93 4.93 1.41 1.41'/%3E%3Cpath d='m17.66 17.66 1.41 1.41'/%3E%3Cpath d='M2 12h2'/%3E%3Cpath d='M20 12h2'/%3E%3Cpath d='m6.34 17.66-1.41 1.41'/%3E%3Cpath d='m19.07 4.93-1.41 1.41'/%3E%3C/svg%3E") !important;
 }
 
+/* Intitulés des parties dans le sommaire. */
+.tree-group-label {
+  margin: 1.2em 0 0.4em;
+  font-size: 0.75em;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+/* Appels de notes et liste des sources. */
+.footnote-ref a {
+  font-size: 0.75em;
+  text-decoration: none;
+}
+
+.footnotes-list {
+  font-size: 0.75em;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.footnotes-list li {
+  margin-bottom: 0.4em;
+}
+
+.footnotes-list li:target {
+  background-color: hsla(var(--color-accent-hsl), 0.12);
+  border-radius: 4px;
+}
+
+.footnote-backref {
+  text-decoration: none;
+}
+
 /* Encadrés repliables utilisables au clavier. */
 .callout-title[role="button"]:focus-visible {
   outline: 2px solid var(--color-accent);

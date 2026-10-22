@@ -1,9 +1,15 @@
 ---
 titre: Passer un ordre en bourse
 description: Ordre au marché, ordre à cours limité, ordres à seuil ou à plage de déclenchement : comment fonctionnent les ordres de bourse et lequel utiliser.
-ordre: 10
+ordre: 14
+partie: Passer à l'action
 ---
-Un ordre de bourse est une instruction d'achat ou de vente donnée à son courtier. Il est conseillé de passer ses ordres pendant les heures de cotation (de 9 h à 17 h 30 sur Euronext Paris), quand les échanges sont nombreux. Voici les principaux types d'ordres :
+> [!abstract] L'essentiel
+> - Utiliser l'ordre à cours limité : on fixe le prix maximum que l'on accepte de payer.
+> - Éviter l'ordre au marché et les ordres à seuil de déclenchement, dont le prix d'exécution n'est pas maîtrisé.
+> - Vérifier que le titre est éligible à son enveloppe avant d'acheter.
+
+Un ordre de bourse est une instruction d'achat ou de vente donnée à son courtier. Il est conseillé de passer ses ordres pendant les heures de cotation (de 9 h à 17 h 30 sur Euronext Paris[^horaires]), quand les échanges sont nombreux. Voici les principaux types d'ordres[^amf] :
 
 ## Ordre au marché
 
@@ -18,7 +24,11 @@ On fixe un prix maximum à l'achat (ou minimum à la vente). L'ordre n'est exéc
 
 Cet ordre n'est pas prioritaire par rapport aux ordres au marché, mais c'est l'ordre conseillé, car il offre plus de sécurité et de maîtrise.
 
-Pour choisir sa limite, on consulte le carnet d'ordres, qui affiche les offres de vente et les demandes d'achat. On repère le prix de vente le plus bas proposé, et l'on fixe sa limite à ce prix ou quelques centimes au-dessus. Inutile de viser un chiffre rond : à prix égal, les ordres sont exécutés dans leur ordre d'arrivée, et une limite un peu plus haute (100,50 € plutôt que 100 €, par exemple) fait passer devant tous ceux qui ont choisi 100 €. Comme on paie le prix du vendeur, ces quelques centimes de marge ne sont pas forcément dépensés.
+Pour choisir sa limite, on consulte le [[glossaire#Carnet d'ordres|carnet d'ordres]], qui affiche les offres de vente et les demandes d'achat. On repère le prix de vente le plus bas proposé, et l'on fixe sa limite à ce prix ou quelques centimes au-dessus. Inutile de viser un chiffre rond : à prix égal, les ordres sont exécutés dans leur ordre d'arrivée, et une limite un peu plus haute (100,50 € plutôt que 100 €, par exemple) fait passer devant tous ceux qui ont choisi 100 €. Comme on paie le prix du vendeur, ces quelques centimes de marge ne sont pas forcément dépensés.
+
+## Ordre à la meilleure limite
+
+Il s'exécute au meilleur prix proposé en face au moment où il arrive sur le marché. S'il n'est exécuté qu'en partie, le reste devient un ordre à cours limité, au prix de la première partie exécutée. C'est un compromis, mais l'ordre à cours limité reste plus simple à maîtriser.
 
 ## Ordres à seuil et à plage de déclenchement
 
@@ -30,3 +40,6 @@ Ces ordres relèvent surtout du *market timing* et sont inutiles pour un investi
 
 > [!warning] Attention
 > Avant de passer un ordre, vérifier que le titre que l'on veut acheter est bien compatible avec l'[[choisir-son-enveloppe-fiscale|enveloppe fiscale]] utilisée. Les actions américaines ne sont par exemple pas éligibles au PEA.
+
+[^horaires]: Fortuneo, [« Horaires et fermeture des marchés »](https://www.fortuneo.fr/bourse/horaire-fermeture-marches).
+[^amf]: Autorité des marchés financiers, [« Choisir et passer un ordre de bourse : ce qu'il faut savoir »](https://amf-france.org/sites/institutionnel/files/pdf/69106/fr/Choisir_et_passer_un_ordre_de_bourse__ce_qu'il_faut_savoir.pdf).
