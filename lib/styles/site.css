@@ -1,0 +1,218 @@
+/* Styles propres au site, chargés après les styles exportés depuis Obsidian. */
+
+body {
+  --chart-line: #0a87d6;
+}
+
+/* L'export réservait une demi-hauteur d'écran vide sous le contenu. */
+.document-container > .markdown-preview-view > .markdown-preview-sizer {
+  padding-bottom: 2em;
+}
+
+/* Titre de la page (masqué par défaut dans l'export Obsidian). */
+.markdown-preview-sizer > .mod-header {
+  display: block !important;
+}
+
+/* Icône des liens externes, embarquée au lieu d'être chargée depuis publish.obsidian.md. */
+.external-link {
+  background-image: linear-gradient(transparent, transparent), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230a87d6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 3h6v6'/%3E%3Cpath d='M10 14 21 3'/%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3C/svg%3E");
+}
+
+/* Les tableaux larges défilent horizontalement au lieu d'élargir la page sur mobile. */
+.table-scroll {
+  overflow-x: auto;
+}
+
+.markdown-preview-sizer > .mod-header .inline-title {
+  margin-top: 0;
+}
+
+/* Icônes du bouton clair / sombre, embarquées au lieu d'être chargées depuis api.iconify.design. */
+.toggle-background::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z'/%3E%3C/svg%3E") !important;
+}
+
+.theme-toggle-input:checked ~ .toggle-background::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2'/%3E%3Cpath d='M12 20v2'/%3E%3Cpath d='m4.93 4.93 1.41 1.41'/%3E%3Cpath d='m17.66 17.66 1.41 1.41'/%3E%3Cpath d='M2 12h2'/%3E%3Cpath d='M20 12h2'/%3E%3Cpath d='m6.34 17.66-1.41 1.41'/%3E%3Cpath d='m19.07 4.93-1.41 1.41'/%3E%3C/svg%3E") !important;
+}
+
+/* Encadrés repliables utilisables au clavier. */
+.callout-title[role="button"]:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-s, 4px);
+}
+
+/* Figures et légendes. */
+.figure {
+  margin: 1.5em 0;
+}
+
+.figure img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 6px;
+}
+
+.figure figcaption {
+  margin-top: 0.6em;
+  font-size: 0.7em;
+  line-height: 1.4;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* Graphiques générés à partir des fichiers CSV. */
+.chart {
+  position: relative;
+}
+
+.chart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.chart svg:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.chart-grid line {
+  stroke: var(--background-modifier-border);
+  stroke-width: 1;
+}
+
+.chart-axis text {
+  fill: var(--text-muted);
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+}
+
+.chart-label {
+  fill: var(--text-normal);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* Le graphique rétrécit avec l'écran : on grossit le texte pour qu'il reste lisible. */
+@media (max-width: 600px) {
+  .chart-axis text,
+  .chart-label {
+    font-size: 26px;
+  }
+
+  .chart-tick-debut {
+    display: none;
+  }
+}
+
+.chart-line {
+  fill: none;
+  stroke: var(--chart-line);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.chart-area {
+  fill: var(--chart-line);
+  opacity: 0.1;
+}
+
+.chart-dot,
+.chart-focus {
+  fill: var(--chart-line);
+  stroke: var(--background-primary);
+  stroke-width: 2;
+}
+
+.chart-focus,
+.chart-crosshair {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.chart-crosshair {
+  stroke: var(--text-faint);
+  stroke-width: 1;
+}
+
+.chart-hit {
+  fill: transparent;
+}
+
+.chart-tooltip {
+  position: absolute;
+  z-index: 1;
+  transform: translate(-50%, calc(-100% - 12px));
+  padding: 0.25em 0.6em;
+  font-size: 0.7em;
+  white-space: nowrap;
+  pointer-events: none;
+  background: var(--background-primary);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.chart-tooltip-valeur {
+  font-weight: 700;
+  color: var(--text-normal);
+}
+
+.chart-tooltip-libelle {
+  margin-left: 0.5em;
+  color: var(--text-muted);
+}
+
+.chart-table {
+  margin-top: 0.5em;
+  font-size: 0.8em;
+}
+
+.chart-table summary {
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+/* Navigation entre les pages et avertissement en bas de page. */
+.page-nav {
+  display: flex;
+  gap: 1em;
+  justify-content: space-between;
+  margin-top: 3em;
+  padding-top: 1.2em;
+  border-top: 1px solid var(--background-modifier-border);
+}
+
+.page-nav a {
+  display: flex;
+  flex-direction: column;
+  max-width: 48%;
+  text-decoration: none;
+}
+
+.page-nav-next {
+  margin-left: auto;
+  text-align: right;
+}
+
+.page-nav-label {
+  font-size: 0.65em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.avertissement {
+  margin: 2em 0 3em;
+  font-size: 0.65em;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
