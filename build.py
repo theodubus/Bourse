@@ -131,11 +131,25 @@ class Page:
         self.titre = meta["titre"]
         self.description = meta["description"]
         self.ordre = int(meta["ordre"])
+        self.partie = meta.get("partie", "")
+
+        # Les définitions de notes (« [^cle]: texte ») sont retirées du corps
+        # et affichées dans la section « Sources » en bas de page.
+        self.notes = {}  # clé -> texte de la source
+        lignes = []
+        for ligne in self.corps.split("\n"):
+            m = RE_DEF_NOTE.match(ligne)
+            if not m:
+                lignes.append(ligne)
+            elif m.group(1) in self.notes:
+                raise ErreurSource(f"{chemin.name} : la note « {m.group(1)} » est définie deux fois")
+            else:
+                self.notes[m.group(1)] = m.group(2).strip()
+        self.corps = "\n".join(lignes)
+
         self.titres = {}  # texte du titre -> identifiant
-        for ligne in self.corps.splitlines():
-            m = RE_TITRE.match(ligne)
-            if m:
-                self.titres[m.group(2)] = ancre(m.group(2))
+        for _, texte, identifiant in titres_de(self):
+            self.titres[texte] = identifiant
 
 
 def lire_entete(chemin: Path):
@@ -158,6 +172,8 @@ class Contexte:
     def __init__(self, page: Page, pages: dict):
         self.page = page
         self.pages = pages
+        self.numeros = {}  # clé de note -> numéro, dans l'ordre du premier appel
+        self.appels = {}  # clé de note -> nombre d'appels dans le texte
 
 
 # --------------------------------------------------------------------------
@@ -166,7 +182,8 @@ class Contexte:
 
 RE_EN_LIGNE = re.compile(
     r"""
-      (?P<wiki>\[\[(?P<wiki_corps>[^\]]+)\]\])
+      (?P<note>\[\^(?P<note_cle>[\w-]+)\])
+    | (?P<wiki>\[\[(?P<wiki_corps>[^\]]+)\]\])
     | (?P<img>!\[(?P<img_alt>[^\]]*)\]\((?P<img_src>[^)\s]+)\))
     | (?P<lien>\[(?P<lien_texte>(?:[^\[\]]|\[[^\]]*\])+)\]\((?P<lien_url>[^)\s]+)\))
     | (?P<code>`(?P<code_corps>[^`]+)`)
@@ -196,7 +213,9 @@ def en_ligne(texte: str, ctx: Contexte) -> str:
     for m in RE_EN_LIGNE.finditer(texte):
         morceaux.append(texte_brut(texte[position:m.start()]))
         position = m.end()
-        if m.group("wiki"):
+        if m.group("note"):
+            morceaux.append(appel_de_note(m.group("note_cle"), ctx))
+        elif m.group("wiki"):
             morceaux.append(lien_wiki(m.group("wiki_corps"), ctx))
         elif m.group("img"):
             morceaux.append(
@@ -226,6 +245,35 @@ def lien(texte: str, url: str, ctx: Contexte) -> str:
     return f'<a class="internal-link" href="{html.escape(url)}">{en_ligne(texte, ctx)}</a>'
 
 
+def appel_de_note(cle: str, ctx: Contexte) -> str:
+    """[^cle] : appel numéroté vers la source correspondante en bas de page."""
+    if cle not in ctx.page.notes:
+        raise ErreurSource(f"{ctx.page.chemin.name} : la note « {cle} » n'est pas définie")
+    numero = ctx.numeros.setdefault(cle, len(ctx.numeros) + 1)
+    ctx.appels[cle] = ctx.appels.get(cle, 0) + 1
+    identifiant = f"fnref-{cle}" + (f"-{ctx.appels[cle]}" if ctx.appels[cle] > 1 else "")
+    return (
+        f'<sup class="footnote-ref"><a class="footnote-link" href="#fn-{cle}" '
+        f'id="{identifiant}">[{numero}]</a></sup>'
+    )
+
+
+def rendre_sources(ctx: Contexte) -> str:
+    inutilisees = sorted(set(ctx.page.notes) - set(ctx.numeros))
+    if inutilisees:
+        raise ErreurSource(
+            f"{ctx.page.chemin.name} : note(s) jamais appelée(s) dans le texte : {', '.join(inutilisees)}"
+        )
+    elements = []
+    for cle, _ in sorted(ctx.numeros.items(), key=lambda element: element[1]):
+        elements.append(
+            f'<li id="fn-{cle}">{en_ligne(ctx.page.notes[cle], ctx)} '
+            f'<a class="footnote-link footnote-backref" href="#fnref-{cle}" '
+            f'aria-label="Revenir au texte">↩</a></li>'
+        )
+    return '<ol class="footnotes-list">\n' + "\n".join(elements) + "\n</ol>"
+
+
 def lien_wiki(corps: str, ctx: Contexte) -> str:
     """[[page]], [[page|texte]], [[page#Titre|texte]] ou [[#Titre|texte]]."""
     cible, _, alias = corps.partition("|")
@@ -250,6 +298,7 @@ def lien_wiki(corps: str, ctx: Contexte) -> str:
 # --------------------------------------------------------------------------
 
 RE_TITRE = re.compile(r"^(#{2,6})\s+(.+?)\s*$")
+RE_DEF_NOTE = re.compile(r"^\[\^([\w-]+)\]:\s*(.+)$")
 RE_PUCE = re.compile(r"^(\s*)([-*+]|\d+[.)])\s+(.*)$")
 RE_CALLOUT = re.compile(r"^\[!([\w-]+)\]([+-]?)\s*(.*)$")
 RE_FIGURE = re.compile(r'^!\[([^\]]*)\]\(([^)\s]+)(?:\s+"([^"]*)")?\)$')
@@ -645,9 +694,14 @@ def bouton_repli(replie: bool) -> str:
 
 
 def rendre_page(page: Page, pages: list, index: int, contenu: str) -> str:
-    sommaire = "".join(
-        element_arbre(p.fichier, p.titre, 1, actif=p is page) for p in pages
-    )
+    sommaire = []
+    partie = ""
+    for p in pages:
+        if p.partie and p.partie != partie:
+            sommaire.append(f'<div class="tree-group-label">{texte_brut(p.partie)}</div>')
+        partie = p.partie
+        sommaire.append(element_arbre(p.fichier, p.titre, 1, actif=p is page))
+    sommaire = "\n".join(sommaire)
     plan = "".join(
         element_arbre("#" + identifiant, texte, int(niveau))
         for niveau, texte, identifiant in titres_de(page)
@@ -736,6 +790,35 @@ def titres_de(page: Page):
         m = RE_TITRE.match(ligne)
         if m:
             yield len(m.group(1)), m.group(2), ancre(m.group(2))
+    if page.notes:
+        yield 2, "Sources", ancre("Sources")
+
+
+# --------------------------------------------------------------------------
+# Redirections : anciennes adresses de pages fusionnées ou renommées
+# --------------------------------------------------------------------------
+
+REDIRECTIONS = {
+    "inflation.html": "pourquoi-investir",
+}
+
+
+def rendre_redirection(cible: Page) -> str:
+    href = html.escape(cible.fichier)
+    return f"""<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Page déplacée · {texte_brut(NOM_DU_SITE)}</title>
+<meta http-equiv="refresh" content="0; url={href}">
+<link rel="canonical" href="{href}">
+<script>location.replace({json.dumps(cible.fichier)} + location.hash);</script>
+</head>
+<body>
+<p>Cette page a été déplacée : <a href="{href}">{texte_brut(cible.titre)}</a>.</p>
+</body>
+</html>
+"""
 
 
 # --------------------------------------------------------------------------
@@ -748,11 +831,20 @@ def construire() -> int:
     index_pages = {p.slug: p for p in pages}
     for index, page in enumerate(pages):
         ctx = Contexte(page, index_pages)
-        contenu = imbriquer(analyser_blocs(page.corps.split("\n"), ctx))
+        blocs = analyser_blocs(page.corps.split("\n"), ctx)
+        if page.notes:
+            blocs += [("titre", 2, "Sources"), ("html", rendre_sources(ctx))]
         sortie = RACINE / page.fichier
-        sortie.write_text(rendre_page(page, pages, index, contenu), encoding="utf-8")
+        sortie.write_text(rendre_page(page, pages, index, imbriquer(blocs)), encoding="utf-8")
         print(f"  {page.fichier}")
-    print(f"{len(pages)} pages générées.")
+    for ancienne, slug in REDIRECTIONS.items():
+        if slug not in index_pages:
+            raise ErreurSource(f"redirection de {ancienne} vers une page inconnue « {slug} »")
+        if ancienne in {p.fichier for p in pages}:
+            raise ErreurSource(f"{ancienne} est à la fois une page et une redirection")
+        (RACINE / ancienne).write_text(rendre_redirection(index_pages[slug]), encoding="utf-8")
+        print(f"  {ancienne} → {index_pages[slug].fichier}")
+    print(f"{len(pages)} pages et {len(REDIRECTIONS)} redirection(s) générées.")
     return 0
 
 
